@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Morning ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    text-align: center;
+    flex-direction: column;
+}
+
+#openBtn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #ff6f91;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.message {
+    display: none;
+    color: white;
+    margin: 10px;
+}
+
+#message1 {
+    font-size: 3rem;
+    font-family: 'Great Vibes', cursive;
+}
+
+#message2 {
+    font-size: 1.4rem;
+    max-width: 600px;
+    font-family: 'Dancing Script', cursive;
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.95);
+    padding: 25px 35px;
+    border-radius: 25px;
+    font-size: 2.2rem;
+    font-family: 'Great Vibes', cursive;
+    color: #ff4d6d;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    bottom: -50px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<button id="openBtn">Open Message 💌</button>
+
+<div id="message1" class="message">
+Good morning my beautiful Marinela.. ❤️
+</div>
+
+<div id="message2" class="message">
+I hope today brings you a calm heart and a gentle smile. Just knowing you are in my life makes everything feel more peaceful and complete.
+</div>
+
+<div id="popup">
+I love you my baby ❤️
+</div>
+
+<!-- PERFECT MUSIC -->
+<audio id="music" loop preload="auto">
+  <source src="https://files.catbox.moe/2kdlbh.aac" type="audio/aac">
+</audio>
+
+<script>
+const btn = document.getElementById("openBtn");
+const msg1 = document.getElementById("message1");
+const msg2 = document.getElementById("message2");
+const popup = document.getElementById("popup");
+const music = document.getElementById("music");
+
+btn.addEventListener("click", () => {
+    btn.style.display = "none";
+    msg1.style.display = "block";
+
+    // Play music with fade-in
+    music.volume = 0;
+    music.play();
+
+    let vol = 0;
+    let fade = setInterval(() => {
+        if (vol < 1) {
+            vol += 0.02;
+            music.volume = vol;
+        } else {
+            clearInterval(fade);
+        }
+    }, 200);
+
+    // Show second message after 3 sec
+    setTimeout(() => {
+        msg2.style.display = "block";
+    }, 3000);
+
+    // Show popup after 10 sec
+    setTimeout(() => {
+        popup.style.display = "block";
+    }, 10000);
+
+    // Floating hearts
+    for (let i = 0; i < 25; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+    }
+});
+</script>
+
+</body>
+</html>
